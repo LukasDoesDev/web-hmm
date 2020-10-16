@@ -13,5 +13,10 @@
     "server"
   ],
   "author": "lukasdoesdev",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": "https://github.com/LukasDoesDev/web-hmm",
+  "bugs": {
+    "url": "https://github.com/LukasDoesDev/web-hmm/issues",
+    "email": "lukasdoesdev@gmail.com"
+  }
 }
