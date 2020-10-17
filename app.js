@@ -115,9 +115,10 @@ function createServer () {
     if (methods.routes.hasOwnProperty(req.method)) {
 
       var route = (
-        findRoute(methods.routes[req.method], req.url)/**/;/**/
+        findRoute(methods.routes[req.method], req.url)
       //  || findRouterRoute(req.method, req.url)
       );
+
       if (route) {
         // Routes
         route.callback(req, res);
