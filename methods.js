@@ -1,4 +1,17 @@
-var routes = {
+var middleware = require('./middleware.js');
+var methodTypes = [
+  'GET',
+  'HEAD',
+  'POST',
+  'PUT',
+  'DELETE',
+  'CONNECT',
+  'OPTIONS',
+  'TRACE',
+  'PATCH'
+]
+
+/*var routes = {
   GET: [],
   POST: []
 }
@@ -10,17 +23,78 @@ function method (type, route, callback) {
       callback: callback
     });
   }
+}*/
+
+function makeRouteMiddleware(type, route, cb) {
+  middleware.use(function (req, res, next) {
+    if (
+      require('path').posix.normalize(req.url) === route
+      && req.method === type
+    ) {
+      
+      // Make new methods
+      res.sendHTML = (body, code, headers, statusMsg) => {
+        res.writeHead(
+          code ? code : 200, statusMsg,
+          {
+            'Content-Type': 'text/html',
+            'Content-Length': Buffer.byteLength(body)
+          } + headers
+        );
+        res.end(body);
+      }
+      res.sendJSON = (body, code, headers, statusMsg) => {
+        res.writeHead(
+          code ? code : 200, statusMsg,
+          {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(body)
+          } + headers
+        );
+        res.end(body);
+      }
+      res.sendPlain = (body, code, headers, statusMsg) => {
+        res.writeHead(
+          code ? code : 200, statusMsg,
+          {
+            'Content-Type': 'text/plain',
+            'Content-Length': Buffer.byteLength(body)
+          } + headers
+        );
+        res.end(body);
+      }
+      res.send = (body, code, headers, statusMsg) => {
+        res.writeHead(
+          code ? code : 200, statusMsg,
+          {
+            'Content-Length': Buffer.byteLength(body)
+          } + headers
+        );
+        res.end(body);
+      }
+      res.redirect = (url) => {
+        res.writeHead(200, {
+          'Location': url
+        })
+        res.end();
+      }
+
+      cb(req, res);
+    } else {
+      next();
+    }
+  }, 'ROOT_ROUTE');
 }
 
 exports = {
-  routes: routes,
-  method: method
+  // routes: routes,
+  makeRouteMiddleware,
+  methodTypes
 };
 
-var keys = Object.keys(routes);
-for (let i = 0; i < keys.length; i++) {
-  const item = keys[i];
-  exports[item] = (route, callback) => method(item, route, callback);
+for (let i = 0; i < methodTypes.length; i++) {
+  const item = methodTypes[i];
+  exports[item] = (route, callback) => makeRouteMiddleware(item, route, callback);
 }
 
 
