@@ -134,6 +134,7 @@ app.middleware.use(
   'LOGGER' //                   [Name to display in Console when debugging]
 )
 
+// This returns a function that should be used with the function above
 app.middleware.predefined.static(
   './public/assets', //         (Root from where to get files at)
   '/assets' //                  (Base route where the files will be served)
