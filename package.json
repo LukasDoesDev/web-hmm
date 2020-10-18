@@ -4,7 +4,7 @@
   "description": "This is a basic HTTP \"framefork\" I'm making.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./tests/tester.js"
   },
   "keywords": [
     "http",
