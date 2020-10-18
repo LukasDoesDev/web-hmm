@@ -41,6 +41,8 @@ var port = process.env.PORT || port;
 app.listen(port, () => console.log('Server listening at port ' + port));
 ```
 
+Happy ~~hacking~~➡**securing**!
+
 ## Features
  * Custom request handlers
  * Static file support (Security not tested yet)
@@ -57,12 +59,12 @@ app.listen(port, () => console.log('Server listening at port ' + port));
 */
 
 web-hmm
- ├─ debugMode () ............... // LIBRARY CONTRIBUTOR TOOL
+ ├─ debugMode ()
  ├─ createServer (callback)
  ├─ methods .................... // IMPORT
  │   ├─ makeRouteMiddleware () . // INTERNAL
  │   ├─ methodTypes ['GET','HEAD','POST','PUT'...]
- │   └─ Auto-gen DNs from methodTypes ()
+ │   └─ Auto-gen FNs from methodTypes ()
  │      ^callback^s inputs
  │       ├─ req {}
  │       └─ res {}
@@ -133,8 +135,8 @@ app.middleware.use(
 )
 
 app.middleware.predefined.static(
-  './public/assets', //   (Root from where to get files at)
-  '/assets' //            (Base route where the files will be served)
+  './public/assets', //         (Root from where to get files at)
+  '/assets' //                  (Base route where the files will be served)
 )
 
 
