@@ -1,7 +1,5 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
 const http = require('http');
 
 const methods = require('./methods.js');
@@ -14,6 +12,9 @@ var mode = enums.Modes.PRODUCTION;
 var server;
 
 function createServer () {
+
+  throw new Error('This should break it');
+
   console.log(mode, enums.Modes);
   if (
     !(mode == enums.Modes.PRODUCTION
