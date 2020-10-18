@@ -11,7 +11,7 @@ var mode = enums.Modes.PRODUCTION;
 
 var server;
 
-
+throw new Error("No, this should break it");
 
 function createServer () {
 
