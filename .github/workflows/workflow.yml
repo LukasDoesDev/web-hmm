@@ -1,4 +1,4 @@
-name: Sveltefire Package
+name: web-hmm NPM Package
 
 on:
   release:
