@@ -68,6 +68,7 @@ web-hmm
  │      ^callback^s inputs
  │       ├─ req {}
  │       └─ res {}
+ │           ├─ params {}
  │           ├─ sendHTML ()
  │           ├─ sendJSON ()
  │           ├─ sendPlain ()
