@@ -1,6 +1,6 @@
 {
   "name": "web-hmm",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "This is a basic HTTP \"framefork\" I'm making.",
   "main": "app.js",
   "scripts": {
