@@ -25,10 +25,12 @@ function method (type, route, callback) {
   }
 }*/
 
+const path = require('path');
+
 function makeRouteMiddleware(type, route, cb) {
   middleware.use(function (req, res, next) {
     if (
-      require('path').posix.normalize(req.url) === route
+      path.posix.normalize(req.url) === route
       && req.method === type
     ) {
       

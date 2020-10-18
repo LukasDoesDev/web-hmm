@@ -47,14 +47,14 @@ function run(req, res) {
 
     if (tmp.length == 0 || count >= middleware.length) {
       // 404
-      res.writeHead(404, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ code: "404 Not Found" }));
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ code: '404 Not Found' }));
       return;
     }
 
     console.log();
     count++;
-    console.log("Running middleware, Count: " + count);
+    console.log('Running middleware, Count: ' + count);
     tmp[0].func(req, res, next);
   };
   console.log(tmp);
