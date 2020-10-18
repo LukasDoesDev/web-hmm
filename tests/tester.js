@@ -20,4 +20,9 @@ app.middleware.use(
 
 app.createServer();
 
-app.listen(3000, () => console.log("Server listening at port 3000"));
+app.listen(3000, () => {
+  console.log("Server listening at port 3000");
+  setTimeout(() => {
+    process.exit(0);
+  }, 500);
+});
