@@ -23,7 +23,8 @@
     "email": "lukasdoesdev@gmail.com"
   },
   "devDependencies": {
-    "mocha": "^8.2.0",
-    "chai": "^4.2.0"
+    "axios": "^0.20.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0"
   }
 }
