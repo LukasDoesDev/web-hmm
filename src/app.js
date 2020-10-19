@@ -86,7 +86,7 @@ function createServer () {
         }
       ));
 
-    }*/
+    }/**/
     
   })
 }
@@ -106,6 +106,15 @@ function listen (port, callback) {
   }
 }
 
+/**
+ * 
+ * @param {function} callback
+ */
+function shutdown(callback) {
+  console.log('Shutting Down ⏹');
+  server.close(callback);
+}
+
 
 module.exports = {
   createServer,
@@ -115,5 +124,6 @@ module.exports = {
   Router: router.Router,
   useRouter: router.useRouter,
   middleware,
-  debugMode() { mode = enums.Modes.DEBUG; }
+  debugMode() { mode = enums.Modes.DEBUG; },
+  shutdown
 };

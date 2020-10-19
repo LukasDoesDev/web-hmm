@@ -2,10 +2,13 @@
   "name": "web-hmm",
   "version": "3.1.2",
   "description": "This is a basic HTTP \"framefork\" I'm making.",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "node ./tests/tester.js"
+    "test": "mocha"
   },
+  "files": [
+    "./src"
+  ],
   "keywords": [
     "http",
     "javascript",
@@ -18,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/LukasDoesDev/web-hmm/issues",
     "email": "lukasdoesdev@gmail.com"
+  },
+  "devDependencies": {
+    "axios": "^0.20.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0"
   }
 }
