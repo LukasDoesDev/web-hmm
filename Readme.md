@@ -61,6 +61,7 @@ Happy ~~hacking~~➡**securing**!
 web-hmm
  ├─ debugMode ()
  ├─ createServer (callback)
+ ├─ shutdown (callback)
  ├─ methods .................... // IMPORT
  │   ├─ makeRouteMiddleware () . // INTERNAL
  │   ├─ methodTypes ['GET','HEAD','POST','PUT'...]

@@ -13,7 +13,7 @@ var server;
 
 
 
-function createServer () {
+function createServer (config) {
 
   console.log(mode, enums.Modes);
   if (
@@ -30,8 +30,7 @@ function createServer () {
   console.log('Routers:', router.routers);
 
   server = http.createServer((req, res) => {
-    console.log('Got connection');
-    // TODO: Rework Middleware... (Make it dynamic!)
+    console.log("Got connection");
     middleware.run(req, res);
 
     // ! that was actually wrong 👇👇👇
@@ -87,32 +86,25 @@ function createServer () {
       ));
 
     }/**/
-    
-  })
-}
-
-function listen (port, callback) {
-  if (
-    typeof port != 'number'
-    || typeof callback != 'function'
-  ) {
-    throw new TypeError('port isn\'t a number and/or callback isn\'t a function');
-  }
-
-  if (!server) {
-    console.error('Please call app.createServer() before app.listen()');
-  } else {
-    server.listen(port, callback);
-  }
+  }, config);
 }
 
 /**
- * 
+ * Listen on the port and call the callback when it's listening
+ * @param {Number} port The port where the server would listen on
+ * @param {function} callback The callback the server will call when it's listening
+ */
+function listen (port, callback, config) { server.listen(port, callback); }
+
+/**
+ * Shuts down the server with a nice message 👍
  * @param {function} callback
  */
 function shutdown(callback) {
-  console.log('Shutting Down ⏹');
+  console.log('Shutting Server Down ⏹');
   server.close(callback);
+  console.log(`Shutted Server Down,
+should automatically exit 😀`);
 }
 
 
