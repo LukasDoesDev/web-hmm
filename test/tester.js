@@ -20,9 +20,9 @@ describe("Test server", function () {
     app.createServer();
     app.listen(3000, done);
   });
-  after(function () {
-    // TODO: Shut down server properly
-  });
+  
+  after(app.shutdown);
+
   it("Test GET method with axios", async function () {
     var response = await axios({
       method: "get",
