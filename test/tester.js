@@ -1,12 +1,35 @@
 var assert = require("assert");
 const app = require("../src/app.js");
+const axios = require("axios").default;
 
-describe("Run common HTTP methods", function () {
-  it("Should run without errors", function () {
-    // C R U D
-    app.methods.POST("/", () => {});
-    app.methods.GET("/", () => {});
-    app.methods.PATCH("/", () => {});
-    app.methods.DELETE("/", () => {});
+describe("Test server", function () {
+  before(function (done) {
+    app.methods.POST("/", (req, res, next) => {
+      res.sendPlain("Hello from POST");
+    });
+    app.methods.GET("/", (req, res, next) => {
+      res.sendPlain("Hello from GET");
+    });
+    app.methods.PATCH("/", (req, res, next) => {
+      res.sendPlain("Hello from PATCH");
+    });
+    app.methods.DELETE("/", (req, res, next) => {
+      res.sendPlain("Hello from DELETE");
+    });
+
+    app.createServer();
+    app.listen(3000, done);
+  });
+  after(function () {
+    // TODO: Shut down server properly
+  });
+  it("Test GET method with axios", async function () {
+    var response = await axios({
+      method: "get",
+      url: "http://localhost:3000/",
+      timeout: 1000
+    });
+    assert.equal(response.data, `Hello from GET`);
+    assert.equal(response.status, 200);
   });
 });
