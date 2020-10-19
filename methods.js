@@ -76,7 +76,7 @@ function makeRouteMiddleware(type, route, cb) {
     }
 
     function checkURL() {
-      if (parameters.length == 0) {
+      if (Object.keys(parameters).length == 0) {
         return normRoute == url;
       } else {
         return normRoute.split("/").every(match);
