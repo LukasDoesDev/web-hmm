@@ -13,8 +13,7 @@ const methodTypes = [
 
 const path = require("path");
 
-function createMethods() {
-  var middleware = require("./middleware.js");
+function createMethods(middleware) {
   function makeRouteMiddleware(type, route, cb) {
     middleware.use(function (req, res, next) {
       var url = path.posix.normalize(req.url);

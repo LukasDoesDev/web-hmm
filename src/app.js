@@ -5,6 +5,8 @@ const utils = require("./utils.js");
 const enums = require("./enums.js");
 
 const createMethods = require("./methods.js").createMethods;
+const createMiddleware = require("./middleware.js").createMiddleware;
+
 
 /**
  * Create new instance of the app
@@ -12,8 +14,8 @@ const createMethods = require("./methods.js").createMethods;
 function createApp() {
   // todo
 
-  const methods = createMethods();
-  const middleware = require("./middleware.js");
+  const middleware = createMiddleware();
+  const methods = createMethods(middleware);
   var mode = enums.Modes.PRODUCTION;
 
   var server;
