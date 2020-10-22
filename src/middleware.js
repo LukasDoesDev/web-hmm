@@ -12,15 +12,11 @@ const predefined = {
 }
 
 function use(func, type) {
-  if (!func) {
-    throw new TypeError('The func parameter is undefined/null');
-  }
-  middleware.push(
-    {
-      type: type ? type : 'NOT_SPECIFIED',
-      func: func
-    }
-  )
+  if (!func) throw new TypeError('The func parameter is undefined/null');
+  middleware.push({
+    type: type ? type : 'NOT_SPECIFIED',
+    func: func
+  })
 }
 
 function run(req, res) {
