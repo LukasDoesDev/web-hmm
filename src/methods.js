@@ -75,49 +75,26 @@ function createMethods(middleware) {
         console.log(parameters);
 
         // Make new methods
-        res.sendHTML = (body, code, headers, statusMsg) => {
-          res.writeHead(
-            code ? code : 200,
-            statusMsg,
-            {
-              "Content-Type": "text/html",
-              "Content-Length": Buffer.byteLength(body),
-            } + headers
-          );
-          res.end(body);
-        };
-        res.sendJSON = (body, code, headers, statusMsg) => {
-          res.writeHead(
-            code ? code : 200,
-            statusMsg,
-            {
-              "Content-Type": "application/json",
-              "Content-Length": Buffer.byteLength(body),
-            } + headers
-          );
-          res.end(body);
-        };
-        res.sendPlain = (body, code, headers, statusMsg) => {
-          res.writeHead(
-            code ? code : 200,
-            statusMsg,
-            {
-              "Content-Type": "text/plain",
-              "Content-Length": Buffer.byteLength(body),
-            } + headers
-          );
-          res.end(body);
-        };
         res.send = (body, code, headers, statusMsg) => {
           res.writeHead(
             code ? code : 200,
             statusMsg,
-            {
-              "Content-Length": Buffer.byteLength(body),
-            } + headers
+            Object.assign(
+              {
+                "Content-Length": Buffer.byteLength(body),
+              },
+              headers
+            )
           );
           res.end(body);
         };
+        res.sendHTML = (body, code, headers, statusMsg) =>
+          send(body, code, Object.assign({ "Content-Type": "text/html" }, headers), statusMsg);
+        res.sendJSON = (body, code, headers, statusMsg) =>
+          send(body, code, Object.assign({ "Content-Type": "application/json" }, headers), statusMsg);
+        res.sendPlain = (body, code, headers, statusMsg) =>
+          send(body, code, Object.assign({ "Content-Type": "text/plain" }, headers), statusMsg);
+
         res.redirect = (url) => {
           res.writeHead(200, {
             Location: url,
