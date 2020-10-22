@@ -1,6 +1,9 @@
 "use strict";
 
 const http = require("http");
+const utils = require("./utils.js");
+const enums = require("./enums.js");
+
 const createMethods = require("./methods.js").createMethods;
 
 /**
@@ -10,9 +13,7 @@ function createApp() {
   // todo
 
   const methods = createMethods();
-  const utils = require("./utils.js");
   const middleware = require("./middleware.js");
-  const enums = require("./enums.js");
   var mode = enums.Modes.PRODUCTION;
 
   var server;
