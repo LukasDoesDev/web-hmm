@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("http");
+const createMethods = require("./methods.js").createMethods;
 
 /**
  * Create new instance of the app
@@ -8,9 +9,8 @@ const http = require("http");
 function createApp() {
   // todo
 
-  const methods = require("./methods.js");
+  const methods = createMethods();
   const utils = require("./utils.js");
-  const router = require("./router.js");
   const middleware = require("./middleware.js");
   const enums = require("./enums.js");
   var mode = enums.Modes.PRODUCTION;
@@ -25,7 +25,6 @@ function createApp() {
     console.log(
       `${mode == enums.Modes.PRODUCTION ? "PRODUCTION" : "DEBUG"} Mode`
     );
-    console.log("Routers:", router.routers);
 
     server = http.createServer((req, res) => {
       console.log("Got connection");
@@ -58,8 +57,6 @@ should automatically exit 😀`);
     methods,
     utils,
     listen,
-    Router: router.Router,
-    useRouter: router.useRouter,
     middleware,
     debugMode() {
       mode = enums.Modes.DEBUG;
