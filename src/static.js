@@ -16,16 +16,6 @@ module.exports = function static(root, route) {
     );
   }
 
-  if (require('./app.js').mode == require('./enums.js').Modes.DEBUG)
-  {
-    staticArr.push(
-      {
-        root: root,
-        route: route
-      }
-    )
-  }
-
 
   return function (req, res, next) {
     var item = {

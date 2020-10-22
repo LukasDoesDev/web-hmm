@@ -1,10 +1,10 @@
 {
   "name": "web-hmm",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "This is a basic HTTP \"framefork\" I'm making.",
   "main": "./src/app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --timeout 5000"
   },
   "files": [
     "./src"
