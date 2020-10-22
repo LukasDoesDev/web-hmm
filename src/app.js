@@ -12,6 +12,23 @@ var mode = enums.Modes.PRODUCTION;
 var server;
 
 
+/**
+ * Create new instance of the app
+ */
+function createApp() {
+  // todo
+  return {
+    createServer,
+    methods,
+    utils,
+    listen,
+    Router: router.Router,
+    useRouter: router.useRouter,
+    middleware,
+    debugMode() { mode = enums.Modes.DEBUG; },
+    shutdown
+  };
+}
 
 function createServer (config) {
 
@@ -109,13 +126,5 @@ should automatically exit 😀`);
 
 
 module.exports = {
-  createServer,
-  methods,
-  utils,
-  listen,
-  Router: router.Router,
-  useRouter: router.useRouter,
-  middleware,
-  debugMode() { mode = enums.Modes.DEBUG; },
-  shutdown
+  createApp
 };

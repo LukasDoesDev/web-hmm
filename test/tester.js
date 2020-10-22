@@ -4,25 +4,27 @@ const axios = require("axios").default;
 
 
 describe("Test server", function () {
+  var currentApp;
   before(function (done) {
-    app.methods.GET("/", (req, res, next) => {
+    currentApp = app.createApp();
+    currentApp.methods.GET("/", (req, res, next) => {
       res.sendPlain("Hello from GET");
     });
-    app.methods.POST("/", (req, res, next) => {
+    currentApp.methods.POST("/", (req, res, next) => {
       res.sendPlain("Hello from POST");
     });
-    app.methods.DELETE("/", (req, res, next) => {
+    currentApp.methods.DELETE("/", (req, res, next) => {
       res.sendPlain("Hello from DELETE");
     });
-    app.methods.PATCH("/", (req, res, next) => {
+    currentApp.methods.PATCH("/", (req, res, next) => {
       res.sendPlain("Hello from PATCH");
     });
 
-    app.createServer();
-    app.listen(3000, done);
+    currentApp.createServer();
+    currentApp.listen(3000, done);
   });
   
-  after(app.shutdown);
+  after(done => currentApp.shutdown(done));
 
   it(`Test GET method with axios`, async function () {
     var response = await axios({
