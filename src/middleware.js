@@ -1,11 +1,4 @@
 var middleware = []; // Array containing the functions for middleware
-var staticArr = []; //  Array of objects with the following structure:
-/*
-{
-  root: './files/static/css', // Filesystem path (can be relative)
-  route: '/css', //              Web base-path   (absoulte)
-}
-*/
 
 const predefined = {
   static: require('./static.js')
@@ -63,7 +56,6 @@ function run(req, res) {
 module.exports = {
   use,
   run,
-  staticArr,
   predefined,
   middleware
 }
