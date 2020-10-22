@@ -6,9 +6,9 @@ var methodTypes = [
   'POST',
   'PUT',
   'DELETE',
-  'CONNECT',
-  'OPTIONS',
-  'TRACE',
+  // 'CONNECT',
+  // 'OPTIONS',
+  // 'TRACE',
   'PATCH'
 ]
 
