@@ -28,7 +28,7 @@ describe("Test server", function () {
     var response = await axios({
       method: 'GET',
       url: "http://localhost:3000/",
-      timeout: 1000,
+      timeout: 2000,
     });
     assert.strictEqual(response.data, `Hello from GET`);
     assert.strictEqual(response.status, 200);
@@ -37,7 +37,7 @@ describe("Test server", function () {
     var response = await axios({
       method: 'POST',
       url: "http://localhost:3000/",
-      timeout: 1000,
+      timeout: 2000,
     });
     assert.strictEqual(response.data, `Hello from POST`);
     assert.strictEqual(response.status, 200);
