@@ -30,60 +30,6 @@ function createApp() {
     server = http.createServer((req, res) => {
       console.log("Got connection");
       middleware.run(req, res);
-
-      // ! that was actually wrong 👇👇👇
-      /*if (methods.routes.hasOwnProperty(req.method)) {
-      var route = findRoute(methods.routes[req.method], req.url);
-      var routerRoute = router.findRouterRoute(req.method, req.url);
-
-      if (route) {
-
-        // Run the callback
-        route.callback(req, res);
-
-      } else if (routerRoute) {
-
-        // Run the callback
-        routerRoute.callback(req, res);
-
-      } else if (
-        staticServe.staticRoot
-        && staticServe.staticRoute
-        && req.url.match(staticServe.staticRoute)) {
-
-        // Static
-        var resolvedBase = path.resolve(staticRoot);
-        var safeSuffix = path.normalize(req.url.replace(staticRoute, '')).replace(/^(\.\.[\/\\])+/, '');
-        var fileLoc = path.join(resolvedBase, safeSuffix);
-    
-        var stream = fs.createReadStream(fileLoc);
-
-        // Handle non-existent file
-        stream.on('error', function(error) {
-            res.writeHead(404, 'Not Found');
-            res.end(JSON.stringify({ code: '404 Not Found', info: 'File Not Found' }));
-        });
-
-        // File exists, stream it to user
-        res.statusCode = 200;
-        stream.pipe(res);
-
-      } else {
-
-        err404(res);
-      }
-
-    } else {
-
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(
-        {
-          code: '400 Bad Request',
-          info: `Other methods than ${utils.joinArrNicely(Object.keys(methods.routes))} are not currently supported.`
-        }
-      ));
-
-    }/**/
     }, config);
   }
 

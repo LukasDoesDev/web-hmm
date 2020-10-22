@@ -12,20 +12,6 @@ var methodTypes = [
   'PATCH'
 ]
 
-/*var routes = {
-  GET: [],
-  POST: []
-}
-
-function method (type, route, callback) {
-  if (routes.hasOwnProperty(type)) {
-    routes[type].push({
-      route: route,
-      callback: callback
-    });
-  }
-}*/
-
 const path = require('path');
 
 function makeRouteMiddleware(type, route, cb) {
