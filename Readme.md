@@ -20,7 +20,7 @@ app.middleware.use(function (req, res, next) {
 app.methods.GET(
   '/',
   (req, res) => {
-    res.writeHTML(
+    res.sendHTML(
 `
 <h1>Hello, World!</h1>
 <p>Welcome my website!</p>
