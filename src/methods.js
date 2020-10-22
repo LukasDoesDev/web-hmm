@@ -89,11 +89,11 @@ function createMethods(middleware) {
           res.end(body);
         };
         res.sendHTML = (body, code, headers, statusMsg) =>
-          send(body, code, Object.assign({ "Content-Type": "text/html" }, headers), statusMsg);
+          res.send(body, code, Object.assign({ "Content-Type": "text/html" }, headers), statusMsg);
         res.sendJSON = (body, code, headers, statusMsg) =>
-          send(body, code, Object.assign({ "Content-Type": "application/json" }, headers), statusMsg);
+          res.send(body, code, Object.assign({ "Content-Type": "application/json" }, headers), statusMsg);
         res.sendPlain = (body, code, headers, statusMsg) =>
-          send(body, code, Object.assign({ "Content-Type": "text/plain" }, headers), statusMsg);
+          res.send(body, code, Object.assign({ "Content-Type": "text/plain" }, headers), statusMsg);
 
         res.redirect = (url) => {
           res.writeHead(200, {
