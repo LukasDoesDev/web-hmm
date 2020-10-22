@@ -2,8 +2,6 @@ var assert = require("assert");
 const app = require("../src/app.js");
 const axios = require("axios").default;
 
-const methods = ['GET'];
-// const methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'TRACE', 'PATCH'];
 
 describe("Test server", function () {
   before(function (done) {
@@ -26,16 +24,23 @@ describe("Test server", function () {
   
   after(app.shutdown);
 
-  for (let i = 0; i < methods.length; i++) {
-    const method = methods[i]; // Current method
-    it(`Test ${method} method with axios`, async function () {
-      var response = await axios({
-        method: method,
-        url: "http://localhost:3000/",
-        timeout: 1000,
-      });
-      assert.strictEqual(response.data, `Hello from ${method}`);
-      assert.strictEqual(response.status, 200);
+  it(`Test GET method with axios`, async function () {
+    var response = await axios({
+      method: 'GET',
+      url: "http://localhost:3000/",
+      timeout: 1000,
     });
-  }
+    assert.strictEqual(response.data, `Hello from GET`);
+    assert.strictEqual(response.status, 200);
+  });
+  it(`Test POST method with axios`, async function () {
+    var response = await axios({
+      method: 'POST',
+      url: "http://localhost:3000/",
+      timeout: 1000,
+    });
+    assert.strictEqual(response.data, `Hello from POST`);
+    assert.strictEqual(response.status, 200);
+  });
+  
 });
