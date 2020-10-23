@@ -12,6 +12,7 @@ const methodTypes = [
 ];
 
 const path = require("path");
+const http = require("http");
 
 function createMethods(middleware) {
   function makeRouteMiddleware(type, route, cb) {
@@ -75,25 +76,30 @@ function createMethods(middleware) {
         console.log(parameters);
 
         // Make new methods
-        res.send = (body, code, headers, statusMsg) => {
+        res.send = (body, code, headers) => {
+          var headersFixed = Object.entries(Object.assign(
+            {
+              "Content-Length": Buffer.byteLength(body),
+            },
+            headers
+          ));
+          for (let i = 0; i < headersFixed.length; i++) {
+            const [headerName, headerValue] = headersFixed[i];
+            console.log(headerName, headerValue, headersFixed[i]);
+            res.setHeader(headerName, headerValue);
+          }
           res.writeHead(
             code ? code : 200,
-            statusMsg,
-            Object.assign(
-              {
-                "Content-Length": Buffer.byteLength(body),
-              },
-              headers
-            )
+            http.STATUS_CODES[code ? code : 200]
           );
           res.end(body);
         };
-        res.sendHTML = (body, code, headers, statusMsg) =>
-          res.send(body, code, Object.assign({ "Content-Type": "text/html" }, headers), statusMsg);
-        res.sendJSON = (body, code, headers, statusMsg) =>
-          res.send(body, code, Object.assign({ "Content-Type": "application/json" }, headers), statusMsg);
-        res.sendPlain = (body, code, headers, statusMsg) =>
-          res.send(body, code, Object.assign({ "Content-Type": "text/plain" }, headers), statusMsg);
+        res.sendHTML = (body, code, headers) =>
+          res.send(body, code, Object.assign({ "Content-Type": "text/html" }, headers));
+        res.sendJSON = (body, code, headers) =>
+          res.send(body, code, Object.assign({ "Content-Type": "application/json" }, headers));
+        res.sendPlain = (body, code, headers) =>
+          res.send(body, code, Object.assign({ "Content-Type": "text/plain" }, headers));
 
         res.redirect = (url) => {
           res.writeHead(200, {
